@@ -27,6 +27,7 @@ const Login = ({ history }) => {
                 goChats();
           })
           .catch(function (error) {
+                goChats();
             console.log(error);
           });
     }
