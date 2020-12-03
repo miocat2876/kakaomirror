@@ -2,6 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    list-style: none;
 }
 
 .chats{
@@ -13,38 +14,92 @@
 
 .header{
     height: 50px;
-    background: black;
+    padding: 0 10px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(250, 250, 250);
+}
+
+#title{
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 50px;
+}
+
+#icons{
+    display: flex;
+    align-items: center;
+}
+
+#icons > li{
+    width: 30px;
+    height: 30px;
+    background-size: 70%;
+    margin-right: 5px;
+}
+#icons > li:hover{
+    cursor: pointer;
+}
+#icons > li:nth-child(1){
+    text-align: center;
+    line-height: 50px;
+    background-image: url(../../images/search.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#icons > li:nth-child(2){
+    text-align: center;
+    line-height: 50px;
+    background-image: url(../../images/user.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#icons > li:nth-child(3){
+    text-align: center;
+    line-height: 50px;
+    background-image: url(../../images/smile.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+#icons > li:nth-child(4){
+    text-align: center;
+    line-height: 50px;
+    background-image: url(../../images/gear.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-right: 0;
 }
 
 .chatBoxList{
     height: calc(100% - 100px);
-    margin: 0 auto;
-}
-
-.chatBoxList{
-    width: 320px;
-}
-
-.chatBox{
-    height: 55px;
+    padding: 0 10px;
 }
 
 .chatBoxInner{
     display: flex;
     justify-content: space-between;
+    height: 60px;
 }
+
 
 .leftSection{
     display: flex;
     padding-top: 2.5px;
     width: 200px;
+    align-items: center;
 }
 
 .img{
-    width: 50px;
-    height: 50px;
+    width: 45px;
+    height: 45px;
     border-radius: 20px;
-    background: lightsalmon;
+    background: wheat;
+    margin-right: 5px;
+}
+
+.title{
+    font-size: 15px;
+    font-weight: 550;
 }
 
 .userName{
@@ -63,26 +118,52 @@
 .enterBtn{
     width: 70px;
     height: 50px;
-    background: lightgray;
     border: none;
     font-size: 13px;
+    background: white;
+}
+.enterBtn:hover{
+    cursor: pointer;
 }
 .footer{
     height: 50px;
-    background: black;
+    background: rgb(250, 250, 250);
     bottom: 0;
     display: flex;
+    border-top: 1px solid #ddd;
 }
 
-.findChat{
-    width: calc( 100% / 2 );
-    color: white;
+.friends{
+    width: calc( 100% / 4 );
     text-align: center;
     line-height: 50px;
+    background-image: url(../../images/user.png);
+    background-repeat: no-repeat;
+    background-position: center;
 }
-.makeChat{
-    width: calc( 100% / 2 );
-    color: white;
+.chatList{
+    width: calc( 100% / 4 );
     text-align: center;
     line-height: 50px;
+    background-image: url(../../images/talks.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.etc{
+    width: calc( 100% / 4 );
+    text-align: center;
+    line-height: 50px;
+    background-image: url(../../images/notification.png);
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.makeChat{
+    width: calc( 100% / 4 );
+    text-align: center;
+    line-height: 50px;
+    background-image: url(../../images/talk.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 30%;
 }

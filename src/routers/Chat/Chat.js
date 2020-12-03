@@ -5,12 +5,12 @@ window.$ = window.jQuery = jQuery;
 
 function output(value){
     //서버에서 데이터 받기
-    $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_p_p">상대방 : '+value+'</p></div>');
+    $("#chat_view").prepend('<div class = "chat_op"> <p class = "chat_p_p">'+value+'</p></div>');
 }
 
 function input(value){
     //서버에 데이터 전송
-    $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_p_p"> 나 : '+value+'</p></div>');
+    $("#chat_view").prepend('<div class = "chat_p"> <p class = "chat_p_p">'+value+'</p></div>');
 }
 
 
@@ -69,7 +69,7 @@ const Chat = ({history}) => {
                     <div className="header_2">
                         <button className="gohome" onClick={out}>나가기</button>
                     </div> */}
-                <div className="left">chat title</div>
+                <div className="left">채팅방</div>
                 <div className="center"></div>
                 <div className="right">
                     <button className="gohome" onClick={out}>나가기</button>
