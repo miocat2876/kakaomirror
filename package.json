@@ -1,7 +1,7 @@
 {
   "name": "kakaoReact",
   "version": "1.0.0",
-  "homepage": "http://kakaomirror.cf/",
+  "homepage": "https://github.com/miocat2876/kakao/",
   "description": {
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
@@ -13,8 +13,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "react-scripts build",
     "stop": "webpack-dev-server",
-    "deploy": "gh-pages -b master -d build",
-    "predeploy": ""
+    "deploy": "gh-pages -d build",
+    "predeploy": "npm run build"
   },
   "keywords": [],
   "author": "",
