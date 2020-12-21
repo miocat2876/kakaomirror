@@ -37,4 +37,125 @@ function solution(board, moves) {
 
     var answer = result;
     return answer;
-}
+    
+    
+    
+    
+    
+    
+    
+    =====================================
+    
+    
+    -- bvoat.menu definition
+
+CREATE TABLE `menu` (
+  `parent_id` varchar(100) DEFAULT NULL COMMENT '부모 주소',
+  `child_id` varchar(100) DEFAULT NULL COMMENT '소분류 id',
+  `name` varchar(100) DEFAULT NULL COMMENT '메뉴이름',
+  `sort` int(1) DEFAULT NULL COMMENT '순서',
+  `depth` int(1) DEFAULT NULL COMMENT '1-Parent / 2-Child',
+  `auth_cd` varchar(100) DEFAULT NULL COMMENT '권한Code',
+  `url` varchar(100) DEFAULT NULL COMMENT 'URL 주소',
+  `parent_url` varchar(100) DEFAULT NULL COMMENT 'Main 주소',
+  `use_yn` varchar(1) DEFAULT 'Y' COMMENT 'Y-사용 / N-사용안함'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- bvoat.tb_cart definition
+
+CREATE TABLE `tb_cart` (
+  `user_id` varchar(100) DEFAULT NULL COMMENT '사용자id',
+  `kind_id` varchar(100) DEFAULT NULL COMMENT 'fk 상품',
+  `amount` int(11) DEFAULT NULL COMMENT '상품 수량'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='장바구니';
+
+-- bvoat.tb_product definition
+
+CREATE TABLE `tb_product` (
+  `product_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '상품명',
+  `kind_id` int(11) DEFAULT NULL COMMENT 'FK (상품종류)',
+  `delivery_id` int(1) DEFAULT NULL COMMENT 'FK (배송)',
+  `product_kind` varchar(20) DEFAULT NULL COMMENT '상품종류 (조회조건에서 씀)',
+  `story` varchar(100) DEFAULT NULL COMMENT '상품이야기',
+  `brand_nm` varchar(100) DEFAULT NULL COMMENT '브랜드명',
+  `product_nm` varchar(100) DEFAULT NULL COMMENT '상품명',
+  `price` int(11) DEFAULT NULL COMMENT '판매가',
+  `product_info` varchar(100) DEFAULT NULL COMMENT '상품정보',
+  `delivery_price` int(11) DEFAULT NULL COMMENT '배송비',
+  `cart` int(1) DEFAULT 0 COMMENT '장바구니 1->장바구니',
+  `views` int(11) DEFAULT NULL COMMENT '조회수',
+  `reg_id` varchar(100) DEFAULT NULL COMMENT '생성자',
+  `reg_date` datetime DEFAULT current_timestamp() COMMENT '생성일',
+  `use_yn` varchar(1) DEFAULT 'Y' COMMENT 'Y-사용 / N-사용안함',
+  `delivery_freeship_price` int(11) DEFAULT NULL COMMENT '배송비 무료 조건',
+  `product_brandadd` varchar(20) DEFAULT NULL COMMENT '반품 주소지 (배송 안내 탭에서 사용)',
+  PRIMARY KEY (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COMMENT='배송비 무료 조건, 주소지 컬럼 추가(서은빈)';
+
+
+CREATE TABLE `tb_product_kind` (
+  `kind_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'PK',
+  `product_id` int(11) DEFAULT NULL COMMENT 'FK 상품 정보',
+  `kind_cd` varchar(100) DEFAULT NULL COMMENT '맛/종류',
+  `kind_title` varchar(100) DEFAULT NULL COMMENT '맛/종류 제목 (필요없으면 제거)',
+  `kind_contents` varchar(100) DEFAULT NULL COMMENT '맛/종류의 상세정보',
+  `kind_price` int(11) DEFAULT NULL COMMENT '상품 가격',
+  `reg_id` varchar(100) DEFAULT NULL COMMENT '생성자',
+  `reg_date` datetime DEFAULT current_timestamp() COMMENT '생성일',
+  `use_yn` varchar(1) DEFAULT 'Y' COMMENT 'Y-사용 / N-사용안함',
+  `kind_count` int(11) DEFAULT NULL COMMENT '상품 개수',
+  PRIMARY KEY (`kind_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8'
+
+CREATE TABLE `tb_product_qa` (
+  `question_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'pk',
+  `product_id` int(11) DEFAULT NULL COMMENT 'FK 상품',
+  `user_name` varchar(100) DEFAULT NULL COMMENT '작성자명',
+  `comment` text DEFAULT NULL COMMENT '질문 내용',
+  `reg_id` varchar(50) DEFAULT NULL COMMENT '작성자id',
+  `reg_date` datetime DEFAULT NULL COMMENT '작성일',
+  PRIMARY KEY (`question_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='상품 Q&A'
+
+CREATE TABLE `tb_product_review` (
+  `review_id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'pk',
+  `product_id` int(11) DEFAULT NULL COMMENT 'FK 상품테이블',
+  `title` varchar(20) DEFAULT NULL COMMENT '리뷰 제목',
+  `comment` text DEFAULT NULL COMMENT '리뷰 댓글',
+  `comment_img2` varchar(100) DEFAULT NULL COMMENT '리뷰 이미지',
+  `comment_img3` varchar(100) DEFAULT NULL,
+  `comment_img` varchar(100) DEFAULT NULL COMMENT '리뷰 이미지',
+  `rating` int(1) DEFAULT NULL COMMENT '별 평점',
+  `like` varchar(100) DEFAULT NULL COMMENT '좋아요',
+  `recomment` varchar(100) DEFAULT NULL COMMENT '리뷰 댓글 답변',
+  `reg_id` varchar(50) DEFAULT NULL COMMENT '리뷰사용자아이디',
+  `reg_date` datetime DEFAULT NULL COMMENT '작성일',
+  PRIMARY KEY (`review_id`),
+  KEY `FK_productReview_userId` (`reg_id`),
+  CONSTRAINT `FK_productReview_userId` FOREIGN KEY (`reg_id`) REFERENCES `user_info` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='상품 리뷰'
+
+CREATE TABLE `test` (
+  `test` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='ds'
+
+
+CREATE TABLE `user_info` (
+  `user_id` varchar(50) NOT NULL COMMENT 'pk / email = id',
+  `user_pw` varchar(20) DEFAULT NULL COMMENT '비밀번호',
+  `user_nm` varchar(20) DEFAULT NULL COMMENT '이름',
+  `user_addr1` varchar(20) DEFAULT NULL COMMENT '주소1',
+  `user_addr2` varchar(20) DEFAULT NULL COMMENT '주소2',
+  `user_addr3` varchar(20) DEFAULT NULL COMMENT '주소3',
+  `user_phone` varchar(20) DEFAULT NULL COMMENT '연락처',
+  `user_receive_sms` varchar(1) DEFAULT 'Y' COMMENT '이메일 전송 여부',
+  `reg_date` datetime DEFAULT current_timestamp(),
+  `use_yn` varchar(1) DEFAULT 'Y' COMMENT 'Y-사용 / N-사용안함',
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 '
+
+
+CREATE TABLE `user_role` (
+  `user_id` varchar(50) NOT NULL COMMENT 'PK / 유저아이디',
+  `role` varchar(100) DEFAULT NULL COMMENT '권한 00-admin / 01-user'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8'
