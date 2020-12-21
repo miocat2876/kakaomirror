@@ -1,0 +1,51 @@
+function solution(board, moves) {
+    
+   var pang = [];
+   var result = 0;
+    
+    if(moves.length < 1 || moves.length > 1000)
+        return 0;
+
+   for(var i = 0;i < moves.length;i++){
+       
+       var boardVal;
+       
+       
+       for(var j = 0;j < board.length;j++){
+           
+           if(board[i] < 5 || board[i] > 100 || board[j] < 5 || board[j] > 100)
+               return 0;
+           
+           let board2 = board[j];
+           
+           if(moves[i] < 1 || moves[i] >board2.length)
+               return 0;
+           
+           if(board2[moves[i]-1] !== 0){
+               
+               if(board2[moves[i]-1] < 0 || board2[moves[i]-1] > 100)
+                   return 0;
+               
+               
+               boardVal = board2[moves[i]-1];
+               board2[moves[i]-1] = 0;
+               break;
+               
+           }
+           
+       }
+       
+       console.log(pang[pang.length-1] +'////'+boardVal);
+       if(pang[pang.length-1] === boardVal){
+           pang.pop();
+           result = result + 1;
+           
+       }else{
+           pang.push(boardVal);
+       }
+
+   }
+
+    var answer = result;
+    return answer;
+}
