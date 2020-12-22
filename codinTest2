@@ -1,0 +1,29 @@
+function solution(participant, completion) {
+
+    for(var i = 0; i<participant.length;i++){
+        
+        let check = completion.indexOf(participant[i])
+        if(check != -1){
+
+            participant.splice(i,1);
+            completion.splice(check,1);
+            i--;
+        }
+        
+    }
+    
+//     participant = participant.sort();
+    
+//     completion = completion.sort()
+// ;    
+//     let val  = participant.join('');
+//     let val2 = completion.join('');
+//     let val3 = val.replace(val2,'');
+    
+//     console.log(val);
+//     console.log(val2);
+    
+    
+    var answer = participant[0];
+    return answer;
+}
