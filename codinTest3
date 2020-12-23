@@ -1,0 +1,118 @@
+function solution(answers) {
+    
+    var i1 = 0;
+    var i2 = 0;
+    var i3 = 0;
+    var i1VAl = 0;
+    var i2VAl = 0;
+    var i3VAl = 0;
+    var i3Vals = [3,1,2,4,5];
+    var ii = 1;
+    
+    if(answers.length>10000)
+        return [];
+
+    for(var i =1;i<=answers.length;i++){
+        
+        if(ii%6 ==0){
+            ii = 1;
+        }
+        i1 = ii;
+        ii++;
+        
+        
+        if(i % 2 != 0){
+            i2 = 2;
+
+        }else{
+            i2 = i-1;
+            
+        }
+        
+        i3 = i3Vals[parseInt((i-1)/2)];
+        
+        if(answers[i-1] == i1){
+            
+            i1VAl = i1VAl + 1;
+            
+        }
+        if(answers[i-1] == i2){
+            
+            i2VAl = i2VAl + 1;
+            
+        }
+        if(answers[i-1] == i3){
+             
+            i3VAl = i3VAl + 1;
+            
+        }
+        
+        // console.log(i1 + "i1입니다");
+        // console.log(i2 + "i2입니다");
+        
+        
+        
+        
+    }
+
+    
+    let arr1 = [];
+    let arr2 = [];
+    
+    // i1VAl = i1VAl + "1";
+    // i2VAl = i2VAl + "2";
+    // i3VAl = i3VAl + "3";
+
+    if(i1VAl>0){arr1.push(i1VAl + "1");}
+    if(i2VAl>0){arr1.push(i2VAl + "2");}
+    if(i3VAl>0){arr1.push(i3VAl + "3");}
+    
+     arr1 = arr1.sort(function(a, b)  {
+        return b - a;
+     });
+    
+    
+    
+  //  console.log(arr1);
+    var check = check = parseInt(arr1[0]/10);;
+    for(var j = 0; j<arr1.length;j++){
+        
+ // console.log(check +"check");  
+ //                  console.log(arr1[j]);
+ //     console.log(parseInt(arr1[j]/10));
+ //      console.log(arr1[j]%10);
+        
+        
+//         if(check<parseInt(arr1[j]/10)){
+//             // console.log(check +"check");  
+//             //                  console.log(arr1[j]);
+//             //      console.log(parseInt(arr1[j]/10));
+//             //      console.log(arr1[j]%10);
+            
+//             arr2 = [];
+//             check = parseInt(arr1[j+1]/10);
+//             arr2.push(arr1[j]%10);
+            
+//         }else 
+        if(check == parseInt(arr1[j]/10)){
+                arr2.push(arr1[j]%10);
+
+                
+        }
+        
+              
+        
+    }
+   
+    
+    console.log(arr2)
+    
+       arr2 = arr2.sort(function(a, b)  {
+        return a - b;
+     });
+
+    
+    var answer = arr2;
+    
+    return answer;
+}
